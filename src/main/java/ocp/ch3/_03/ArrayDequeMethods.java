@@ -18,6 +18,7 @@ public class ArrayDequeMethods {
 		deque.peek(); 			// Q S returns the next or NULL
 
 		deque.remove();			// Q - removes and returns the next or throws EXCEPTION if empty
+		deque.remove("test");// removes element
 		deque.pop(); 			// - S removes and returns the next or throws EXCEPTION if empty
 		deque.poll(); 			// Q - removes and returns the next or NULL
 
