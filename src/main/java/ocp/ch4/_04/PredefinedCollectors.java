@@ -1,6 +1,9 @@
 package ocp.ch4._04;
 
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -29,6 +32,10 @@ public class PredefinedCollectors {
 						.collect(Collectors.groupingBy(String::length)) // {1=[1], 2=[22, 22], 3=[333]}
 		);
 
+		Map<Integer, Set<String>> map = Stream.of("1", "333", "22", "22")
+				.collect(Collectors.groupingBy(String::length, LinkedHashMap::new, Collectors.toSet()));
+		System.out.println(map); // {1=[1], 3=[333], 2=[22]}
+
 		System.out.println(
 				Stream.of("1", "22", "333", "22")
 						.collect(Collectors.joining("_")) // 1_22_333_22
@@ -49,5 +56,17 @@ public class PredefinedCollectors {
 						)
 				);
 		System.out.println(collect); // {1=a, 2=aabb, 3=aaa}
+
+		System.out.println(
+				Stream.of("aa", "bb", "a", "bbb").collect(
+						Collectors.groupingBy(
+								String::length,
+								Collectors.mapping(
+										s -> s.charAt(0),
+										Collectors.minBy(Comparator.naturalOrder())
+								)
+						)
+				)
+		);
 	}
 }
