@@ -1,6 +1,5 @@
 package ocp.ch4._04;
 
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -57,16 +56,24 @@ public class PredefinedCollectors {
 				);
 		System.out.println(collect); // {1=a, 2=aabb, 3=aaa}
 
+//		System.out.println(
+//				Stream.of("aa", "bb", "a", "bbb").collect(
+//						Collectors.groupingBy(
+//								String::length,
+//								Collectors.mapping(
+//										s -> s.charAt(0),
+//										Collectors.minBy(Comparator.naturalOrder())
+//								)
+//						)
+//				)
+//		);
+
 		System.out.println(
-				Stream.of("aa", "bb", "a", "bbb").collect(
-						Collectors.groupingBy(
-								String::length,
-								Collectors.mapping(
-										s -> s.charAt(0),
-										Collectors.minBy(Comparator.naturalOrder())
-								)
-						)
-				)
+				Stream.iterate("*", s -> s + s).limit(5).collect(Collectors.toList()) // [*, **, ****, ********, ****************]
+		);
+
+		System.out.println(
+				Stream.generate(() -> "****").limit(5).collect(Collectors.toList()) // [****, ****, ****, ****, ****]
 		);
 	}
 }
