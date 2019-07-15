@@ -12,6 +12,13 @@ public class Rethrowing {
 		catch (Exception e) {
 			throw e; // can be only IOException, SQLException
 		}
+
+		try {
+			canThrow();
+		}
+		catch (IOException | SQLException e) {
+			throw e; // can be only IOException, SQLException
+		}
 	}
 
 	private static void canThrow() throws IOException, SQLException {
