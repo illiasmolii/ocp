@@ -17,6 +17,7 @@ public class Rethrowing {
 			canThrow();
 		}
 		catch (IOException | SQLException e) {
+//			e = new IOException(); // not allowed, e - is effectively final
 			throw e; // can be only IOException, SQLException
 		}
 	}
