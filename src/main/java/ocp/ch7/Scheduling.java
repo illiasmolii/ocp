@@ -19,5 +19,13 @@ public class Scheduling {
 				TimeUnit.SECONDS
 		);
 		System.out.println(future.getDelay(TimeUnit.SECONDS));
+
+		// if 1st task continues 5 minutes, 2nd will start from the minute 8 (1m initial delay + 5m task + 2m delay)
+		ScheduledFuture<?> delay = scheduledExecutor.scheduleWithFixedDelay(
+				() -> System.out.println("hi"),
+				1,
+				2,
+				TimeUnit.MINUTES
+		);
 	}
 }
