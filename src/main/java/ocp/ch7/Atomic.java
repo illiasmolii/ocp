@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
-public class RaceConditionAtomic {
+public class Atomic {
 
 	private static AtomicInteger counter = new AtomicInteger(0);
 
@@ -16,7 +16,7 @@ public class RaceConditionAtomic {
 
 	public static void main(String[] args) {
 		ExecutorService executor = Executors.newFixedThreadPool(20);
-		IntStream.range(0, 10).forEach(index -> executor.submit(RaceConditionAtomic::increment));
+		IntStream.range(0, 10).forEach(index -> executor.submit(Atomic::increment));
 		executor.shutdown();
 		// Possible outputs (always 1-10)
 		// 1		2		1
