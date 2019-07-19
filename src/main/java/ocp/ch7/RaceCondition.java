@@ -17,7 +17,7 @@ public class RaceCondition {
 		ExecutorService executor = Executors.newFixedThreadPool(20);
 		IntStream.range(0, 10).forEach(index -> executor.submit(RaceCondition::increment));
 		executor.shutdown();
-		// Possible outputs
+		// Possible outputs(not all the numbers are outputted)
 		// 2		2		2
 		// 4		3		2
 		// 2		2		3
