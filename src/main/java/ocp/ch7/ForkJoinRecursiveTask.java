@@ -34,10 +34,10 @@ public class ForkJoinRecursiveTask {
 
 				Task right = new Task(middle, end, toCompute);
 
-				Integer rightResult = left.join();
-				Integer leftResult = right.compute();
+				Integer rightResult = right.compute();
+				Integer leftResult = left.join();
 
-				return leftResult + rightResult;
+				return rightResult + leftResult;
 			}
 		}
 	}
@@ -50,15 +50,17 @@ public class ForkJoinRecursiveTask {
 		System.out.println(result);
 	}
 
-	// ForkJoinPool-1-worker-2 current sum: 1
-	// ForkJoinPool-1-worker-2 current sum: 4
-	// ForkJoinPool-1-worker-1 current sum: 945
-	// ForkJoinPool-1-worker-1 current sum: 3
-	// ForkJoinPool-1-worker-1 current sum: 6757
-	// ForkJoinPool-1-worker-1 current sum: 5
-	// ForkJoinPool-1-worker-1 current sum: 13
-	// ForkJoinPool-1-worker-1 current sum: 10
-	// ForkJoinPool-1-worker-1 current sum: 543
-	// ForkJoinPool-1-worker-1 current sum: 566
-	// 8295
+	// order: fork -> compute -> join
+
+	//ForkJoinPool-1-worker-4 current sum: 1
+	//ForkJoinPool-1-worker-4 current sum: 4
+	//ForkJoinPool-1-worker-4 current sum: 10
+	//ForkJoinPool-1-worker-1 current sum: 543
+	//ForkJoinPool-1-worker-1 current sum: 566
+	//ForkJoinPool-1-worker-5 current sum: 945
+	//ForkJoinPool-1-worker-3 current sum: 5
+	//ForkJoinPool-1-worker-2 current sum: 3
+	//ForkJoinPool-1-worker-3 current sum: 13
+	//ForkJoinPool-1-worker-2 current sum: 6757
+	//8295
 }
