@@ -18,7 +18,7 @@ public class PathTest {
 
 		URI fromPath = uriFile.toUri();
 
-		Path path1 = FileSystems.getDefault().getPath(testTxt); // similar to Paths.get
+		Path path1 = FileSystems.getDefault().getPath(testTxt).getRoot(); // similar to Paths.get
 		System.out.println(path.equals(path1)); // true
 
 		Path fromFile = new File(testTxt).toPath();
